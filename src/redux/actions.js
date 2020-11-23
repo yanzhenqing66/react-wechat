@@ -1,6 +1,6 @@
 import {AUTH_SUCCESS, AUTH_ERR, USER_INFO_UPDATE, USER_INFO_UPD_ERR} from './action-type'
 
-import {reqLogin, reqRegister, reqUpdateUserInfo} from '../api'
+import {reqLogin, reqRegister, reqUpdateUserInfo, reqUser} from '../api'
 /**
  * 登录注册
  */
@@ -41,6 +41,18 @@ export function loginAction(user) {
 export function updateInfoAction(user) {
   return async dispatch => {
     const res = await reqUpdateUserInfo(user)
+    if(res.code === 0) {
+      dispatch(userInfoUpd(res.data))
+    }else {
+      dispatch(userInfoUpdErr(res.msg))
+    }
+  }
+}
+
+// 获取用户
+export function getUserAction() {
+  return async dispatch => {
+    const res = await reqUser()
     if(res.code === 0) {
       dispatch(userInfoUpd(res.data))
     }else {

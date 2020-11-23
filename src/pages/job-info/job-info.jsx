@@ -39,7 +39,7 @@ class JobInfo extends Component {
     const {header, user_type} = this.props.userReducer
     let path
     if(user_type) {
-      path = user_type === 'boss' ? '/main/boss' : '/main/job'
+      path = user_type === 'boss' ? '/boss' : '/job'
     }
     if(header) {
       return <Redirect to={path} />
