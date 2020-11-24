@@ -4,12 +4,12 @@ import {reqLogin, reqRegister, reqUpdateUserInfo, reqUser} from '../api'
 /**
  * 登录注册
  */
-export const authSuccess = user => ({type: AUTH_SUCCESS, data: user})
-export const errMsg = err => ({type: AUTH_ERR, data: err})
+const authSuccess = user => ({type: AUTH_SUCCESS, data: user})
+const errMsg = err => ({type: AUTH_ERR, data: err})
 /**
  * 更新用户信息
  */
-export const userInfoUpd = user => ({type: USER_INFO_UPDATE, data: user})
+const userInfoUpd = user => ({type: USER_INFO_UPDATE, data: user})
 export const userInfoUpdErr = msg => ({type: USER_INFO_UPD_ERR, data: msg})
 
 // 异步action，注册
