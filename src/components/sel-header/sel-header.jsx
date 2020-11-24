@@ -10,7 +10,7 @@ export default class SelHeader extends Component {
       let text = `头像${i + 1}`
       this.headerList.push({
         text,
-        icon: require(`../../assets/images/header/${text}.png`)
+        icon: require(`../../assets/images/header/${text}.png`).default
       })
     }
 
