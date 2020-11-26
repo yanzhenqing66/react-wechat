@@ -70,7 +70,6 @@ class Register extends Component {
             <Button onClick={() => this.props.history.push('/login')}>
               已有账号
           </Button>
-
           </List>
         </WingBlank>
       </div>

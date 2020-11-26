@@ -7,3 +7,5 @@ export const reqLogin = payload => ajax('/login', payload, 'POST')
 export const reqUpdateUserInfo = payload => ajax('/userUpdate', payload, 'POST')
 
 export const reqUser = () => ajax('user')
+
+export const reqUserList = payload => ajax('/userlist', payload)

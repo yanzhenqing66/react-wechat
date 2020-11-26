@@ -23,16 +23,16 @@ class Main extends Component {
     {
       path: '/boss',
       component: Boss,
-      title: 'Boss列表',
-      icon: 'laoban',
-      text: 'Boss',
+      title: '求职列表',
+      icon: 'dashen',
+      text: '求职',
     },
     {
       path: '/job',
       component: Job,
-      title: '求职列表',
-      icon: 'dashen',
-      text: '求职',
+      title: 'BOSS 列表',
+      icon: 'laoban',
+      text: 'BOSS',
     },
     {
       path: '/message',

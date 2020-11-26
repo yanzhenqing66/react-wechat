@@ -1,6 +1,12 @@
-import {AUTH_SUCCESS, AUTH_ERR, USER_INFO_UPDATE, USER_INFO_UPD_ERR} from './action-type'
+import {
+  AUTH_SUCCESS, 
+  AUTH_ERR, 
+  USER_INFO_UPDATE, 
+  USER_INFO_UPD_ERR, 
+  RECEIVE_USER_LIST
+} from './action-type'
 
-import {reqLogin, reqRegister, reqUpdateUserInfo, reqUser} from '../api'
+import {reqLogin, reqRegister, reqUpdateUserInfo, reqUser, reqUserList} from '../api'
 /**
  * 登录注册
  */
@@ -11,6 +17,10 @@ const errMsg = err => ({type: AUTH_ERR, data: err})
  */
 const userInfoUpd = user => ({type: USER_INFO_UPDATE, data: user})
 export const userInfoUpdErr = msg => ({type: USER_INFO_UPD_ERR, data: msg})
+/**
+ * 获取用户列表
+ */
+const receiveUserList = userList => ({type: RECEIVE_USER_LIST, data: userList})
 
 // 异步action，注册
 export function registerAction(user) {
@@ -59,4 +69,14 @@ export function getUserAction() {
       dispatch(userInfoUpdErr(res.msg))
     }
   }
+}
+
+// 获取用户列表
+export function getUserListAction(user_type) {
+  return async dispatch => {
+    let res = await reqUserList({user_type})
+    if(res.code === 0) {
+      dispatch(receiveUserList(res.data))
+    }
+  } 
 }
