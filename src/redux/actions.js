@@ -1,3 +1,5 @@
+import io from 'socket.io-client'
+
 import {
   AUTH_SUCCESS, 
   AUTH_ERR, 
@@ -25,9 +27,7 @@ const receiveUserList = userList => ({type: RECEIVE_USER_LIST, data: userList})
 // 异步action，注册
 export function registerAction(user) {
   const {username, password, type, password2} = user
-  
   return async dispatch => {
-
     const res = await reqRegister({username, password, password2, user_type: type})
     if(res.code === 0) {
       dispatch(authSuccess(res.data))
@@ -79,4 +79,24 @@ export function getUserListAction(user_type) {
       dispatch(receiveUserList(res.data))
     }
   } 
+}
+
+/**
+ * 消息通信
+ */
+function initIO() {
+  if(!io.socket) {  // 判断是否存在连接服务器的单例对象
+    io.socket = io('wx://localhost:5000')
+    io.socket.on('receiveMsg', (chatMsg) => {
+      console.log('就收服务器消息', chatMsg);
+    })
+  }
+}
+
+// 发送消息
+export function sendMsg({from_id, to_id, content}) {
+  return dispatch => {
+    initIO()
+    io.socket.emit('sendMsg', {from_id, to_id, content})
+  }
 }

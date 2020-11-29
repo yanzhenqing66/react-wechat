@@ -15,6 +15,8 @@ import Message from '../message/message'
 import Personal from '../personal/personal'
 import NotFound from '../../components/not-found/not-found'
 import TabBar from '../../components/tab-bar/tab-bar'
+import Chat from '../chat/chat'
+
 import './main.less'
 
 class Main extends Component {
@@ -96,6 +98,7 @@ class Main extends Component {
           }
           <Route path='/bossinfo' component={BossInfo} />
           <Route path='/jobinfo' component={JobInfo} />
+          <Route path='/chat/:userId' component={Chat} />
           <Route component={NotFound} />
         </Switch>
         {

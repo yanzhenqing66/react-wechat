@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Result, List, Button, Modal } from 'antd-mobile'
+import { Result, List, Button, Modal, Toast } from 'antd-mobile'
 import { connect } from 'react-redux'
 import Cookies from 'js-cookie'
 
@@ -12,7 +12,7 @@ class Personal extends Component {
 
   logout = () => {
     Modal.alert('退出', '确定退出登录吗？', [
-      { text: '取消' },
+      { text: '取消', onPress: () => Toast.info('取消退出') },
       {
         text: '确定',
         onPress: () => {
