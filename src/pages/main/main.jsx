@@ -90,7 +90,7 @@ class Main extends Component {
     return (
       <div>
         {
-          curNav ? <NavBar>{curNav.title}</NavBar> : null
+          curNav ? <NavBar className="stick-top">{curNav.title}</NavBar> : null
         }
         <Switch>
           {
@@ -102,7 +102,7 @@ class Main extends Component {
           <Route component={NotFound} />
         </Switch>
         {
-          curNav ? <TabBar navList={navList}></TabBar> : null
+          curNav ? <TabBar className="am-tab-bar" navList={navList}></TabBar> : null
         }
       </div>
 

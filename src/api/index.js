@@ -9,3 +9,7 @@ export const reqUpdateUserInfo = payload => ajax('/userUpdate', payload, 'POST')
 export const reqUser = () => ajax('user')
 
 export const reqUserList = payload => ajax('/userlist', payload)
+
+export const reqChatMsg = () => ajax('/msglist')
+
+export const reqReadMsg = payload => ajax('/updread', payload, 'POST')

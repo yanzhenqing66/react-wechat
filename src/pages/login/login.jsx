@@ -48,6 +48,7 @@ class Login extends Component {
               clear
               placeholder="请输入密码"
               onChange={val => this.handleChange('password', val)}
+              type="password"
             >密码:</InputItem>
             <Button type='primary' onClick={this.login}>
               登录

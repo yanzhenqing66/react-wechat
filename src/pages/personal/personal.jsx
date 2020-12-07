@@ -26,9 +26,9 @@ class Personal extends Component {
   render() {
     const { header, username, company, post, info, salary } = this.props.userReducer
     return (
-      <div>
+      <div style={{marginTop: 50}}>
         <Result
-          img={<img src={require(`../../assets/images/header/${header}.png`).default} style={{ width: 50, height: 50 }} alt='header' />}
+          img={<img src={require(`../../assets/images/header/${header}.png`).default} style={{ width: 50, height: 50}} alt='header' />}
           title={username}
           message={company}></Result>
         <List renderHeader={() => '相关信息'}>
