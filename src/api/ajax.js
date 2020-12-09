@@ -3,7 +3,6 @@
 import axios from 'axios'
 import { Toast } from 'antd-mobile'
 
-
 const ajax = (url, data={}, type='GET') => {
   return new Promise((resolve, reject) => {
     let promise

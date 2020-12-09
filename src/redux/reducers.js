@@ -28,11 +28,11 @@ const userReducer = (state = initUser, action) => {
       const { header, user_type } = action.data
       return { ...state, ...action.data, redirectTo: goRedirect(user_type, header) }
     case AUTH_ERR:
-      return { ...state, msg: action.data }
+      return { ...initUser, msg: action.data }
     case USER_INFO_UPDATE:
       return action.data
     case USER_INFO_UPD_ERR:
-      return { ...state, msg: action.data }
+      return { ...initUser, msg: action.data }
     default:
       return state
   }
@@ -60,23 +60,24 @@ const initChat = {
 function chatReducer(state = initChat, action) {
   switch (action.type) {
     case RECEIVE_MSG_LIST:
-      const { chatMsgs, users } = action.data
+      const { chatMsgs, users, userid } = action.data
       return {
         chatMsgs,
         users,
-        // unReadCount: chatMsgs.reduce((preTotal, msg) => { // 别人发给我的未读消息
-        //   return preTotal + (!msg.read && msg.to_id === userid ? 1 : 0)
-        // }, 0)
+        unReadCount: chatMsgs.reduce((preTotal, msg) => { // 别人发给我的多个未读消息
+          return preTotal + (!msg.read && msg.to_id === userid ? 1 : 0)
+        }, 0)
       }
     case RECEIVE_ONE_MSG:
-      const chatMsg = action.data
+      const {chatMsg} = action.data
       return {
         chatMsgs: [...state.chatMsgs, chatMsg],
         users: state.users,
-        // unReadCount: state.unReadCount + (!chatMsg.read && chatMsg.to_id === userid ? 1 : 0)
+        unReadCount: state.unReadCount + (!chatMsg.read && chatMsg.to_id === action.data.userid ? 1 : 0)
       }
     case MSG_READ:
       const { count, from_id, to_id } = action.data
+      // debugger
       return {
         chatMsgs: state.chatMsgs.map(msg => {
           if (msg.from_id === from_id && msg.to_id === to_id && !msg.read) {

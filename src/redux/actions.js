@@ -110,7 +110,7 @@ export function getUserListAction(user_type) {
  */
 const receiveMsgList = data => ({ type: RECEIVE_MSG_LIST, data })
 const receiveOneMsg = data => ({ type: RECEIVE_ONE_MSG, data })
-const msgRead = chatMsg => ({ type: MSG_READ, data: chatMsg })
+const msgRead = data => ({ type: MSG_READ, data })
 
 /**
  * 初始化消息通信
@@ -125,7 +125,7 @@ function initIO(dispatch, userid) {
       // 只有chatMsg的里的用户信息，与当前用户的信息相同时，才会分发action，接受消息
       // debugger
       if (userid === chatMsg.from_id || userid === chatMsg.to_id) {
-        dispatch(receiveOneMsg(chatMsg))
+        dispatch(receiveOneMsg({chatMsg, userid}))
       }
     })
   }
@@ -140,7 +140,7 @@ async function getMsgList(dispatch, userid) {
   const res = await reqChatMsg()
   if (res.code === 0) {
     const { chatMsgs, users } = res.data
-    dispatch(receiveMsgList({ chatMsgs, users }))
+    dispatch(receiveMsgList({ chatMsgs, users, userid }))
   }
 }
 
@@ -154,13 +154,11 @@ export function sendMsg({ from_id, to_id, content }) {
 }
 
 // 消息已读异步action
-export const readMsg = (userid) => {
-  return async (dispatch, getState) => {
-    const res = await reqReadMsg(userid)
+export const readMsg = (from_id, to_id) => {
+  return async dispatch => {
+    const res = await reqReadMsg({from_id})
     if (res.code === 0) {
       const count = res.data
-      const from_id = userid
-      const to_id = getState().user._id
       dispatch(msgRead({ from_id, to_id, count }))
     }
   }

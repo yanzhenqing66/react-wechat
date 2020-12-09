@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavBar, List, InputItem, Icon } from 'antd-mobile'
-import { sendMsg } from '../../redux/actions'
+import { sendMsg, readMsg } from '../../redux/actions'
 
 import './chat.less'
 const Item = List.Item
@@ -29,6 +29,11 @@ class Chat extends Component {
   componentDidUpdate() {
     // 更新显示列表
     window.scrollTo(0, document.body.scrollHeight)
+  }
+  componentWillUnmount() {
+    const from_id = this.props.match.params.userId
+    const to_id = this.props.userReducer._id
+    this.props.readMsg(from_id, to_id)
   }
 
   render() {
@@ -95,5 +100,5 @@ class Chat extends Component {
 
 export default connect(
   state => ({ userReducer: state.userReducer, chatReducer: state.chatReducer }),
-  { sendMsg }
+  { sendMsg, readMsg }
 )(Chat)

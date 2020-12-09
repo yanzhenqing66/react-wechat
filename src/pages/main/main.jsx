@@ -23,18 +23,18 @@ class Main extends Component {
 
   navList = [
     {
-      path: '/boss',
-      component: Boss,
-      title: '求职列表',
-      icon: 'dashen',
-      text: '求职',
-    },
-    {
       path: '/job',
       component: Job,
       title: 'BOSS 列表',
       icon: 'laoban',
       text: 'BOSS',
+    },
+    {
+      path: '/boss',
+      component: Boss,
+      title: '求职列表',
+      icon: 'dashen',
+      text: '求职',
     },
     {
       path: '/message',

@@ -52,10 +52,10 @@ class Login extends Component {
             >密码:</InputItem>
             <Button type='primary' onClick={this.login}>
               登录
-          </Button>
+            </Button>
             <Button onClick={() => this.props.history.push('/register')}>
               注册账号
-          </Button>
+            </Button>
           </List>
         </WingBlank>
       </div>
