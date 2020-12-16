@@ -38,7 +38,7 @@ class Register extends Component {
     const { type } = this.state
     return (
       <div>
-        <NavBar>BOSS&nbsp;直&nbsp;聘</NavBar>
+        <NavBar>注册</NavBar>
         <Logo />
         <WingBlank>
           <List>

@@ -35,7 +35,7 @@ class Login extends Component {
     }
     return (
       <div>
-        <NavBar>BOSS&nbsp;直&nbsp;聘</NavBar>
+        <NavBar>登录</NavBar>
         <Logo />
         <WingBlank>
           <List>
